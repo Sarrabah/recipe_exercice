@@ -6,3 +6,6 @@ def test_void_actual_recipe():
 
 def test_equal_expected_and_desired_nb_per():
     assert print_desirable_recipe({"farine": 230, "sucre": 290},2,2) == {"farine": 230, "sucre": 290} 
+
+def test_different_expected_and_desired_nb_per() :
+    assert print_desirable_recipe({"farine": 200, "sucre": 100},2,4) == {"farine": 400, "sucre": 200}
