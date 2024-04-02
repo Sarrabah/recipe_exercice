@@ -1,8 +1,14 @@
-def print_desirable_recipe(actual_recipe, expected_nb_per, desired_nb_per):
-    if actual_recipe == {} or expected_nb_per == desired_nb_per :
-        return actual_recipe
-    else:
-        final_recipe={}
-        for key in actual_recipe.keys():
-            final_recipe[key] = (actual_recipe[key]/expected_nb_per)*desired_nb_per 
-        return final_recipe
+import csv
+def print_desirable_recipe(access_path, expected_nb_per, desired_nb_per):
+    file= open(access_path)
+    csvreader= csv.reader(file)
+    header = next(csvreader)
+    rows = []
+    for row in csvreader:
+        rows.append(row)
+    desired_recipe={}
+    for arr in rows:
+        desired_recipe.update({arr[0]: (int(arr[1])/ expected_nb_per)* desired_nb_per})  
+    return desired_recipe
+
+print(print_desirable_recipe("./recipe_data.csv", 2, 4))
