@@ -1,5 +1,5 @@
 import pytest
-from recipe import multiply_quantity_for_n_people
+from test.recipe import multiply_quantity_for_n_people
 
 def test_void_actual_recipe():
     assert multiply_quantity_for_n_people({}, 2,5) == {}
