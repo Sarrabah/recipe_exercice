@@ -6,6 +6,11 @@ class TestRecipeReaderService(RecipeReaderServiceInterface):
         formatted_file_recipe =[['Farine', '400'], ['Sucre', '50'], ['Chocolat', '200']]
         return formatted_file_recipe
 
+class TestZeroRecipeReaderService(RecipeReaderServiceInterface):
+    def read_recipe_from_csv_file(self, file_path):
+        formatted_file_recipe =[['Farine', '0'], ['Sucre', '0'], ['Chocolat', '0']]
+        return formatted_file_recipe
+
 def test_empty_string_path_file():
     recipe_reader = TestRecipeReaderService()
     new_recipe = RecipeAdapter(recipe_reader)
@@ -26,4 +31,7 @@ def test_desired_nb_per_equal_to_zero() :
     new_recipe = RecipeAdapter(recipe_reader)
     assert new_recipe.multiply_quantity_for_n_people_from_file('./recipe_data.csv',2,0) == {"Farine":0, "Sucre": 0,"Chocolat": 0}
 
-    
+def test_actual_recipe_zero_quantities() :
+    recipe_reader = TestZeroRecipeReaderService()
+    new_recipe = RecipeAdapter(recipe_reader)
+    assert new_recipe.multiply_quantity_for_n_people_from_file('./recipe_data.csv',2,12) == {"Farine":0, "Sucre": 0,"Chocolat": 0}
