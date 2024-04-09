@@ -20,3 +20,10 @@ def test_equal_expected_and_desired_nb_per():
     recipe_reader = TestRecipeReaderService()
     new_recipe = RecipeAdapter(recipe_reader)
     assert new_recipe.multiply_quantity_for_n_people_from_file('./recipe_data.csv',2,2) == {'Farine':400.0 , 'Sucre': 50.0, 'Chocolat': 200.0} 
+
+def test_desired_nb_per_equal_to_zero() :
+    recipe_reader = TestRecipeReaderService()
+    new_recipe = RecipeAdapter(recipe_reader)
+    assert new_recipe.multiply_quantity_for_n_people_from_file('./recipe_data.csv',2,0) == {"Farine":0, "Sucre": 0,"Chocolat": 0}
+
+    
