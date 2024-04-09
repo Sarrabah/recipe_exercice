@@ -18,7 +18,8 @@ class RecipeAdapter :
         return desired_recipe
 
     def multiply_quantity_for_n_people_from_file(self, file_path, original_number_of_person, desired_number_of_person):
-   
+        if (file_path ==''):
+            return {}
         original_recipe_from_file = self.original_recipe_from_file.read_recipe_from_csv_file(file_path)
         desired_recipe = self.modify_the_original_recipe(original_recipe_from_file, original_number_of_person, desired_number_of_person)
 
